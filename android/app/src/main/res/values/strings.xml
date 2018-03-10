@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ASimano</string>
+    <string name="new_mail">You have %1$s new mails.</string>
+    <string name="no_mail">You have no new mail.</string>
+    
+    <string name="channel_new_mail_01">New Mails</string>
+    <string name="channel_fore_01">Progress</string>
+    
+    <string name="server">Server</string>
+    <string name="url_title">URL</string>
+    <string name="url_summary">URL to register the token.</string>
+    <string name="mail_account_title">Mail Account</string>
+    <string name="mail_account_summary">Mail account of Gmail app.</string>
+</resources>

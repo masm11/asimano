@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "14463793406",
+    "firebase_url": "https://asimano-3252f.firebaseio.com",
+    "project_id": "asimano-3252f",
+    "storage_bucket": "asimano-3252f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14463793406:android:17f6525d9160a426",
+        "android_client_info": {
+          "package_name": "jp.ddo.masm11.asimano"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14463793406-m9vjg4l33g5gd6bd1d8d04cgntgvbj6v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7hEtV39aeTuNut8zdcy8Tgx2W9grmdI0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

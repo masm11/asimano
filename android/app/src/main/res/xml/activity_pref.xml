@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <EditTextPreference
+	android:key="url"
+	android:title="@string/url_title"
+	android:summary="@string/url_summary"
+	android:dialogTitle="@string/url_title"
+	android:inputType="text"
+	android:defaultValue="https://localhost" />
+    
+    <EditTextPreference
+	android:key="mail_account"
+	android:title="@string/mail_account_title"
+	android:summary="@string/mail_account_summary"
+	android:dialogTitle="@string/mail_account_title"
+	android:inputType="text"
+	android:defaultValue="/dev/null@localhost" />
+
+</PreferenceScreen>

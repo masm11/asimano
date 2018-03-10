@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ASimano</string>
+    <string name="new_mail">未読メールが%1$s件あります</string>
+    <string name="no_mail">未読メールはありません</string>
+    
+    <string name="channel_new_mail_01">未読メール</string>
+    <string name="channel_fore_01">処理中</string>
+    
+    <string name="server">サーバ</string>
+    <string name="url_title">URL</string>
+    <string name="url_summary">トークンを登録するための URL</string>
+    <string name="mail_account_title">メールアカウント</string>
+    <string name="mail_account_summary">Gmail アプリのメールアカウント</string>
+
+</resources>
