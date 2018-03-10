@@ -1,5 +1,5 @@
-/* Context Player - Audio Player with Contexts
-    Copyright (C) 2016, 2017 Yuuki Harano
+/*  ASimano - Simple Mail Notification for Android.
+    Copyright (C) 2018 Yuuki Harano
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -14,6 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 package jp.ddo.masm11.asimano
 
 import java.util.Collections
