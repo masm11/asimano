@@ -11,4 +11,8 @@
     <string name="url_summary">URL to register the token.</string>
     <string name="mail_account_title">Mail Account</string>
     <string name="mail_account_summary">Mail account of Gmail app.</string>
+
+    <string name="action_pref">Preferences...</string>
+    <string name="action_about">About...</string>
+    <string name="under_gpl3">This app is licensed under GPLv3.</string>
 </resources>

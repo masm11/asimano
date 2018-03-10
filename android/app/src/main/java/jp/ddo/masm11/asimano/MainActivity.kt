@@ -5,6 +5,9 @@ import android.app.Service
 import android.os.Bundle
 import android.os.IBinder
 import android.view.View
+import android.view.Menu
+import android.view.MenuItem
+import android.view.MenuInflater
 import android.widget.TextView
 import android.widget.Button
 import android.content.Intent
@@ -41,8 +44,10 @@ class MainActivity : Activity() {
 	
 	ASimanoInstanceIdService.registerToken(this)
 	
+/*
 	val btn_pref = findViewById<Button>(R.id.pref)
 	btn_pref.setOnClickListener({ _ -> openPref() })
+*/
 	
 /*
 	String hostname = PrefActivity.getHostname(this);
@@ -61,8 +66,32 @@ class MainActivity : Activity() {
     }
 */
     
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+	val inflater = getMenuInflater()
+        inflater.inflate(R.menu.actionbar, menu)
+	return true
+    }
+    
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+	    R.id.action_pref -> {
+		val intent = Intent(this, PrefActivity::class.java)
+		startActivityForResult(intent, 456)
+		return true
+	    }
+	    
+            R.id.action_about -> {
+		val intent = Intent(this, AboutActivity::class.java)
+		startActivityForResult(intent, 789)
+		return true
+            }
+
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+    
     override protected fun onActivityResult(requestCode: Int, resultCode: Int, dat: Intent?) {
-	if (requestCode == 123) {
+	if (requestCode == 123 || requestCode == 456) {
 	    ASimanoInstanceIdService.registerToken(this)
 	    
 /*

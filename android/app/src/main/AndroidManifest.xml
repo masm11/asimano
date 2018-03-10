@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PrefActivity"/>
+        <activity android:name=".AboutActivity"/>
 	<service android:name=".ASimanoService"/>
 	<service android:name=".ASimanoInstanceIdService">
 	  <intent-filter>

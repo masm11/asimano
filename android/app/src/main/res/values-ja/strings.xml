@@ -12,4 +12,7 @@
     <string name="mail_account_title">メールアカウント</string>
     <string name="mail_account_summary">Gmail アプリのメールアカウント</string>
 
+    <string name="action_pref">設定...</string>
+    <string name="action_about">このアプリについて...</string>
+    <string name="under_gpl3">このアプリは GPLv3 の元にライセンスされています。</string>
 </resources>
