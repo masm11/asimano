@@ -4,6 +4,7 @@
     <string name="no_mail">未読メールはありません</string>
     
     <string name="channel_new_mail_01">未読メール</string>
+    <string name="channel_new_mail_02">追加未読メール</string>
     <string name="channel_fore_01">処理中</string>
     
     <string name="server">サーバ</string>

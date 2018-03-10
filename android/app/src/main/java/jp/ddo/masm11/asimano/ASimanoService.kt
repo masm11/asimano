@@ -44,16 +44,16 @@ class ASimanoService: Service() {
     }
     
     private lateinit var notificationManager: NotificationManager
-    private lateinit var notificationChannel: NotificationChannel
-    private lateinit var notificationForeChannel: NotificationChannel
     private lateinit var statusChangedListeners: MutableSet<OnStatusChangedListener>
     
     override fun onCreate() {
 	notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-	notificationChannel = NotificationChannel("new_mail_01", getResources().getString(R.string.channel_new_mail_01), NotificationManager.IMPORTANCE_DEFAULT)
-	notificationForeChannel = NotificationChannel("fore_01", getResources().getString(R.string.channel_fore_01), NotificationManager.IMPORTANCE_LOW)
-	notificationManager.createNotificationChannel(notificationChannel)
-	notificationManager.createNotificationChannel(notificationForeChannel)
+	val channel_01 = NotificationChannel("new_mail_01", getResources().getString(R.string.channel_new_mail_01), NotificationManager.IMPORTANCE_DEFAULT)
+	val channel_02 = NotificationChannel("new_mail_02", getResources().getString(R.string.channel_new_mail_02), NotificationManager.IMPORTANCE_LOW)
+	val channel_fore_01 = NotificationChannel("fore_01", getResources().getString(R.string.channel_fore_01), NotificationManager.IMPORTANCE_LOW)
+	notificationManager.createNotificationChannel(channel_01)
+	notificationManager.createNotificationChannel(channel_02)
+	notificationManager.createNotificationChannel(channel_fore_01)
 	
         statusChangedListeners = MutableWeakSet<OnStatusChangedListener>()
     }
@@ -90,12 +90,13 @@ class ASimanoService: Service() {
 		return
 	    }
 	    
+	    var old_unread: Int = 0
 	    try {
 		BufferedReader(InputStreamReader(openFileInput("state.txt"))).use<BufferedReader, Unit> {
 		    val old_stamp_str = it.readLine()
 		    val old_unread_str = it.readLine()
 		    val old_stamp = ZonedDateTime.parse(old_stamp_str)
-		    // val old_unread = old_unread_str.toInt()
+		    old_unread = old_unread_str.toInt()
 		    
 		    if (stamp.compareTo(old_stamp) <= 0) {
 			android.util.Log.d("ASimanoService", "incoming stamp is older.")
@@ -111,17 +112,14 @@ class ASimanoService: Service() {
 	    try {
 		android.util.Log.d("ASimanoService", "saving state.")
 		BufferedWriter(OutputStreamWriter(openFileOutput("state.txt", MODE_PRIVATE))).use<BufferedWriter, Unit> {
-		    it.write(stamp.toString())
-		    it.write("\n")
-		    it.write(unread)
-		    it.write("\n")
+		    it.write("${stamp.toString()}\n${unread}\n")
 		}
 		android.util.Log.d("ASimanoService", "saving state done.")
 	    } catch (e: Exception) {
 		android.util.Log.e("ASimanoService", e.toString(), e)
 	    }
 	    
-	    setNotification(unread)
+	    setNotification(unread, old_unread == 0 && unread > 0)
 	} finally {
 	    setForeNotification(false)
 	}
@@ -144,7 +142,7 @@ class ASimanoService: Service() {
         }
     }
     
-    private fun setNotification(nr: Int) {
+    private fun setNotification(nr: Int, do_sound: Boolean) {
 	if (nr != 0) {
 	    val intent = Intent(Intent.ACTION_VIEW)
 	    intent.setComponent(ComponentName("com.google.android.gm", "com.google.android.gm.ConversationListActivityGmail"));
@@ -180,7 +178,7 @@ class ASimanoService: Service() {
 		    .setContentText(getResources().getString(R.string.new_mail, nr))
 		    .setContentIntent(pending)
 		    .setOngoing(true)
-		    .setChannelId("new_mail_01")
+		    .setChannelId(if (do_sound) "new_mail_01" else "new_mail_02")
 		    .build()
 	    
 	    notificationManager.notify(0, notification)

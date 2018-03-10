@@ -4,6 +4,7 @@
     <string name="no_mail">You have no new mail.</string>
     
     <string name="channel_new_mail_01">New Mails</string>
+    <string name="channel_new_mail_02">More New Mails</string>
     <string name="channel_fore_01">Progress</string>
     
     <string name="server">Server</string>
