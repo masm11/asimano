@@ -14,12 +14,12 @@
 
   asimanod.rb の先頭に TOKEN_LIST_FILE がある。アプリから受け取ったトークンがこのファイルに格納される。
   
-  SERVER_KEY には Firebase のギアアイコン→クラウドメッセージング→サーバーキーに表示されているトークンを
+  SERVER_KEY には Firebase のギアアイコン → クラウドメッセージング → サーバーキー に表示されているトークンを
   設定しておく。
 
 - asimanod.service を `~/.config/systemd/user/` に配置
 
-  asimanod.service の中の WorkingDirectory と ExecStart を修正しておく。
+  asimanod.service の中の `WorkingDirectory =` と `ExecStart =` を修正しておく。
 
   ```sh
   systemctl --user start asimanod
@@ -28,9 +28,11 @@
 
 - nginx を設定
 
-  例えば、/asimano/register を localhost:18080 に転送するように設定する。
+  例えば、 `/asimano/register` を `localhost:18080` に転送するように設定する。
 
 ## アプリ側
+
+  Android 8.0 Oreo 以降が必要。
 
   以下のようにするとスマホにインストールできる。
 
