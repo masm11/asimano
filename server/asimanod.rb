@@ -201,7 +201,12 @@ class Watcher
   
   def run
     while true
-      if IO.select([@inotifier.to_io], [], [], 2)
+      timeout = nil
+      if @dir_checker.need_notify
+        timeout = 2
+      end
+      
+      if IO.select([@inotifier.to_io], [], [], timeout)
         @inotifier.process
         
         if @dir_checker.need_notify && @dir_checker.cur_nr == 0
