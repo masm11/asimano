@@ -23,9 +23,14 @@ require 'json'
 require 'webrick'
 require 'rb-inotify'
 
-TOKEN_LIST_FILE = '/home/masm/asimano/tokens.txt'
+require_relative './conf'
 
-SERVER_KEY = ''
+if TOKEN_LIST_FILE.nil?
+  raise 'TOKEN_LIST_FILE not set.'
+end
+if SERVER_KEY.nil?
+  raise 'SERVER_KEY not set.'
+end
 
 END_POINT = 'https://fcm.googleapis.com/fcm/send'
 
