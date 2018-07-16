@@ -76,15 +76,18 @@ def send_notification(nr_unread)
 end
 
 def checkdir(path, re)
-  nr = 0
   Dir.open(path) do |dir|
-    dir.each do |name|
-      next if name == '.'
-      next if name == '..'
-      nr += 1 if re =~ name
-    end
+    dir.select{|name|
+      case name
+      when '.', '..'
+        false
+      when re
+        true
+      else
+        false
+      end
+    }.count
   end
-  return nr
 end
 
 @cur_nr = -1
