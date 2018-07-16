@@ -54,27 +54,27 @@ class Notifier
       retry
     end
     
-    tokens.each do |token|
-      h = {
-        to: token,
-        data: {
-          'stamp' => DateTime.now.new_offset(1.0 / 24 * 9).iso8601(6),
-          'unread' => nr_unread.to_s,
-        },
-      }
-      
-      json = JSON.dump(h)
-      
-      https = Net::HTTP.new(uri.host, uri.port)
-      https.use_ssl = true
-      https.ca_path = '/etc/ca-certificates/extracted/cadir'
-      https.verify_mode = OpenSSL::SSL::VERIFY_PEER
-      https.start {
+    https = Net::HTTP.new(uri.host, uri.port)
+    https.use_ssl = true
+    https.ca_path = '/etc/ca-certificates/extracted/cadir'
+    https.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    https.start {
+      tokens.each do |token|
+        h = {
+          to: token,
+          data: {
+            'stamp' => DateTime.now.new_offset(1.0 / 24 * 9).iso8601(6),
+            'unread' => nr_unread.to_s,
+          },
+        }
+        
+        json = JSON.dump(h)
+        
         res = https.post(uri.path, json, header)
-        puts res
+        puts res.class
         puts res.body
-      }
-    end
+      end
+    }
   end
   
 end
