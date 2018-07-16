@@ -143,6 +143,11 @@ fork do
   while true
     if IO.select([notifier.to_io], [], [], 2)
       notifier.process
+
+      if @need_notify && @cur_nr == 0
+        send_notification(@cur_nr)
+        @need_notify = false
+      end
     else
       if @need_notify
         send_notification(@cur_nr)
